@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:81/4BSymfony-main/public/'
+
+        }).done(function (res) {
+            console.log(res.listProducts);
+            let listProducts = res.listProducts
+            let table = $("#table");
+            let h1 = $("#h1");
+            let h2 = $("#h2");
+            let h3 = $("#h3");
+            let h4 = $("#h4");
+            for (let i = 0; i < res.listProducts.length; i++){
+                h1.append(res.listProducts[i].idproduct+ "<br>" );
+                h2.append(res.listProducts[i].name+ "<br>" );
+                h3.append(res.listProducts[i].price+ "<br>" );
+                h4.append(res.listProducts[i].status+ "<br>" );
+
+            }
+
+        });
+    </script>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Status</td>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <td id="h1"></td>
+            <td id="h2"></td>
+            <td id="h3"></td>
+            <td id="h4"></td>
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
